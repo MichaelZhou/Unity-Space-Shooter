@@ -2,31 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AngledEnemyMovement : Enemy {
+public class Enemy_1 : Enemy {
 
     int leftOrRight;
     int angle;
-    public override void Move()
-    {
+
+    public void Move() {
         Vector3 tempPos = pos;
+        tempPos.y -= speed * Time.deltaTime;
         if (leftOrRight == 1)
-        {
             tempPos.x -= speed * Time.deltaTime;
-        }
-        else if (leftOrRight == 2)
-        {
+        else
             tempPos.x += speed * Time.deltaTime;
-        }
         pos = tempPos;
     }
 
-    void Start()
-    {
-        leftOrRight = Random.Range(1, 3);
+    void Update() {
+        Move();
     }
 
-    // Update is called once per frame
-    void Update () {
-        Move();
-	}
+    void Start() {
+        leftOrRight = Random.Range(0, 2);
+    }
 }

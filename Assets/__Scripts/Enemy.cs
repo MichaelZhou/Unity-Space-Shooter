@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public abstract class Enemy : MonoBehaviour {
 
     [Header("Set in Inspector: Enemy")]
     public float speed = 5f;
@@ -10,27 +10,13 @@ public class Enemy : MonoBehaviour {
     public float health = 10f;
     public int score = 100;
 
-    public Vector3 pos
-    {
-        get
-        {
+    public Vector3 pos {
+        get {
             return (this.transform.position);
         }
-        set
-        {
+        set {
             this.transform.position = value;
         }
     }
-    
-	// Update is called once per frame
-	void Update () {
-        Move();
-	}
 
-    public virtual void Move()
-    {
-        Vector3 tempPos = pos;
-        tempPos.y -= speed * Time.deltaTime;
-        pos = tempPos;
-    }
 }
