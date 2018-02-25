@@ -1,8 +1,8 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
     [Header("Set in Inspector: Enemy")]
     public float speed = 5f;
@@ -17,6 +17,16 @@ public abstract class Enemy : MonoBehaviour {
         set {
             this.transform.position = value;
         }
+    }
+
+    void Update() {
+        Move();
+    }
+
+    public virtual void Move() {
+        Vector3 tempPos = pos;
+        tempPos.y -= speed * Time.deltaTime;
+        pos = tempPos;
     }
 
 }

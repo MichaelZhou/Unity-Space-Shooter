@@ -7,7 +7,7 @@ public class Enemy_1 : Enemy {
     int leftOrRight;
     int angle;
 
-    public void Move() {
+    public override void Move() {
         Vector3 tempPos = pos;
         tempPos.y -= speed * Time.deltaTime;
         if (leftOrRight == 1)
@@ -15,10 +15,6 @@ public class Enemy_1 : Enemy {
         else
             tempPos.x += speed * Time.deltaTime;
         pos = tempPos;
-    }
-
-    void Update() {
-        Move();
     }
 
     void Start() {
