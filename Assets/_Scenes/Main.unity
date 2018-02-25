@@ -152,9 +152,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114003827815627812, guid: 55b5161e1776ee9419d671f8066d1881,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55b5161e1776ee9419d671f8066d1881, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &81289419 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1660180378015122, guid: 0de7ab38a16db9f4f88c4909f4066a10,
+    type: 2}
+  m_PrefabInternal: {fileID: 1026475917}
 --- !u!1 &120266061
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +344,7 @@ GameObject:
   - component: {fileID: 509210670}
   - component: {fileID: 509210669}
   - component: {fileID: 509210668}
+  - component: {fileID: 509210672}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -404,6 +415,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &509210672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509210667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb6ee32f1a890042817f2d20350dc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy_0: {fileID: 81289419}
+  enemy_1: {fileID: 1553761938}
+  numEnemies: 15
 --- !u!1001 &1026475917
 Prefab:
   m_ObjectHideFlags: 0
@@ -442,6 +467,11 @@ Prefab:
     - target: {fileID: 4329539163702534, guid: 0de7ab38a16db9f4f88c4909f4066a10, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114005402177386478, guid: 0de7ab38a16db9f4f88c4909f4066a10,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0de7ab38a16db9f4f88c4909f4066a10, type: 2}
@@ -552,6 +582,11 @@ MonoBehaviour:
   rollMult: -45
   pitchMult: 30
   shieldLevel: 1
+--- !u!1 &1553761938 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1295849882377974, guid: 55b5161e1776ee9419d671f8066d1881,
+    type: 2}
+  m_PrefabInternal: {fileID: 67013294}
 --- !u!1 &1715937216
 GameObject:
   m_ObjectHideFlags: 0

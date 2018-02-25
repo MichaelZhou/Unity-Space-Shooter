@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
     public float fireRate = 0.3f;
     public float health = 10f;
     public int score = 100;
-
+   
     public Vector3 pos {
         get {
             return (this.transform.position);
@@ -21,7 +21,14 @@ public class Enemy : MonoBehaviour {
 
     void Update() {
         Move();
+        // Destroys objects when they reach the bottom edge of the camera's field of view
+        if (transform.position.y < Camera.main.transform.position.y - 39)
+        {
+            Destroy(gameObject);
+
+        }
     }
+ 
 
     public virtual void Move() {
         Vector3 tempPos = pos;
