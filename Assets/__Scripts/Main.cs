@@ -26,7 +26,7 @@ public class Main : MonoBehaviour
 
     void Spawn() {
         GameObject enemy;
-        spawnPoint = new Vector3((float)Random.Range(-camWidth, camWidth), camHeight, (float)0);
+        spawnPoint = new Vector3((float)Random.Range(-camWidth+2, camWidth-2), camHeight+2, (float)0);
         numEnemies++;
         switch (numEnemies % 2)
         {
