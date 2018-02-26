@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour {
 
     void Update() {
         Move();
-        // Destroys objects when they reach the bottom edge of the camera's field of view
+        // destroy objects if they exit bounds
         if (transform.position.y < -camHeight)
             Destroy(gameObject);
         if (transform.position.x > camWidth)

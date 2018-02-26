@@ -16,8 +16,6 @@ public class Hero : MonoBehaviour {
     void Awake() {
         if (_hero == null)
             _hero = this; // setting singleton
-        else
-            Debug.LogError("Hero.Awake() - Attempted to re-assign singleton _hero");
     }
 	
 	void Update () {
