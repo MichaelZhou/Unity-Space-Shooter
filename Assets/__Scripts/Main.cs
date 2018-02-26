@@ -4,29 +4,40 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-
+    [Header("Set in Inspector")]
     public GameObject enemy_0;
     public GameObject enemy_1;
-    public int numEnemies = 15;
-    private Vector3 spawnPoint;
+    public float spawnTime = 1f;
 
-    void Start()
-    {
-        for (int i = 1; i <= numEnemies; i++)
+    [Header("Set Dynamically")]
+    private int numEnemies;
+    private Vector3 spawnPoint;
+    public float camWidth;
+    public float camHeight;
+
+    void Awake() {
+        camHeight = Camera.main.orthographicSize;
+        camWidth = camHeight * Camera.main.aspect;
+    }
+
+    void Start() {
+        InvokeRepeating("Spawn", 0, spawnTime);
+    }
+
+    void Spawn() {
+        GameObject enemy;
+        spawnPoint = new Vector3((float)Random.Range(-camWidth, camWidth), camHeight, (float)0);
+        numEnemies++;
+        switch (numEnemies % 2)
         {
-            GameObject enemy;
-            spawnPoint = new Vector3((float)Random.Range(-25, 25), Random.Range(20, 40), (float)0);
-            switch (i % 2)
-            {
-                case 1:
-                    enemy = (GameObject)Instantiate(enemy_0, spawnPoint, Quaternion.identity);
-                    break;
-                default:
-                    enemy = (GameObject)Instantiate(enemy_1, spawnPoint, Quaternion.identity);
-                    break;
-            }
-            enemy.name = "Enemy " + i;
+            case 1:
+                enemy = (GameObject)Instantiate(enemy_0, spawnPoint, Quaternion.identity);
+                break;
+            default:
+                enemy = (GameObject)Instantiate(enemy_1, spawnPoint, Quaternion.identity);
+                break;
         }
+        enemy.name = "Enemy " + numEnemies;
     }
 }
  
