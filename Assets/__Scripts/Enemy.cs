@@ -9,7 +9,16 @@ public class Enemy : MonoBehaviour {
     public float fireRate = 0.3f;
     public float health = 10f;
     public int score = 100;
-   
+
+    [Header("Set Dynamically")]
+    public float camWidth;
+    public float camHeight;
+
+    void Awake() {
+        camHeight = Camera.main.orthographicSize;
+        camWidth = camHeight * Camera.main.aspect;
+    }
+
     public Vector3 pos {
         get {
             return (this.transform.position);
@@ -22,11 +31,12 @@ public class Enemy : MonoBehaviour {
     void Update() {
         Move();
         // Destroys objects when they reach the bottom edge of the camera's field of view
-        if (transform.position.y < Camera.main.transform.position.y - 39)
-        {
+        if (transform.position.y < -camHeight)
             Destroy(gameObject);
-
-        }
+        if (transform.position.x > camWidth)
+            Destroy(gameObject);
+        if (transform.position.x < -camWidth)
+            Destroy(gameObject);
     }
  
 
