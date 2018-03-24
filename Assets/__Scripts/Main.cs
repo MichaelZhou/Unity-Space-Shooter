@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+    static public Main S;
+
     [Header("Set in Inspector")]
     public GameObject enemy_0;
     public GameObject enemy_1;
@@ -16,6 +19,7 @@ public class Main : MonoBehaviour
     public float camHeight;
 
     void Awake() {
+        S = this;
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;
     }
@@ -38,6 +42,14 @@ public class Main : MonoBehaviour
                 break;
         }
         enemy.name = "Enemy " + numEnemies;
+    }
+
+    public void DelayedRestart(float delay) {
+        Invoke("Restart", delay);
+    }
+
+    public void Restart() {
+        SceneManager.LoadScene("Main");
     }
 }
  
