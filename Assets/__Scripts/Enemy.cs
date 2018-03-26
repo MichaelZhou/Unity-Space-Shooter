@@ -8,12 +8,27 @@ public class Enemy : MonoBehaviour {
     public float speed = 5f;
     public float fireRate = 0.3f;
     public float health = 10f;
-    public int score = 100;
+    public int scoreValue;
 
     [Header("Set Dynamically")]
     public float camWidth;
     public float camHeight;
 
+
+    public Main main;
+
+    void Start()
+    {
+        GameObject mainObject = GameObject.FindWithTag("MainCamera");
+        if (mainObject != null)
+        {
+            main = mainObject.GetComponent<Main>();
+        }
+        if (mainObject == null)
+        {
+            Debug.Log("Cannot find 'MainCamera' script");
+        }
+    }
     void Awake() {
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;
@@ -56,6 +71,7 @@ public class Enemy : MonoBehaviour {
             if (health <= 0)
             {
                 Destroy(this.gameObject);
+                main.AddScore(scoreValue);
             }
             Destroy(otherGo); //destroys the projectile
         }

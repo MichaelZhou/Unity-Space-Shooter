@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum WeaponType
 {
@@ -28,6 +29,11 @@ public class Main : MonoBehaviour
     public float camWidth;
     public float camHeight;
 
+    public Text scoreText;
+    public Text highScoreText;
+    private int score;
+    static public int HIGH_SCORE = 0;
+
     void Awake() {
         S = this;
         camHeight = Camera.main.orthographicSize;
@@ -38,11 +44,21 @@ public class Main : MonoBehaviour
         {
             WEAP_DICT[def.type] = def;
         }
+
+        // Check for a high score in PlayerPrefs
+        if (PlayerPrefs.HasKey("ShooterHighScore"))
+        {
+            HIGH_SCORE = PlayerPrefs.GetInt("ShooterHighScore");
+            highScoreText.text = "High Score: " + HIGH_SCORE;
+
+        }
     }
 
     void Start() {
         InvokeRepeating("Spawn", 0, spawnTime);
-    }
+        score = 0;
+        UpdateScore();
+           }
 
     void Spawn() {
         GameObject enemy;
@@ -75,6 +91,24 @@ public class Main : MonoBehaviour
             return (WEAP_DICT[wt]);
         }
         return (new WeaponDefinition());
+    }
+
+    public void AddScore(int newScoreValue)
+    {
+        score += newScoreValue;
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        scoreText.text = "Score: " + score;
+        // Check for a high score in PlayerPrefs
+        if (HIGH_SCORE <= score)
+        {
+            HIGH_SCORE = score;
+            PlayerPrefs.SetInt("ShooterHighScore", HIGH_SCORE);
+            highScoreText.text = "High Score: " + HIGH_SCORE;
+        }
     }
 }
  
