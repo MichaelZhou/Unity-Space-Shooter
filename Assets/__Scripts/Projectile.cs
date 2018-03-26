@@ -27,7 +27,6 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-
     void Awake()
     {
         rend = GetComponent<Renderer>();
@@ -40,9 +39,11 @@ public class Projectile : MonoBehaviour {
     void Update () {
         if (transform.position.y > camHeight)
             Destroy(gameObject);
-        if (transform.position.y < -camWidth)
+        if (transform.position.y < -camHeight)
             Destroy(gameObject);
-        if (transform.position.y > camWidth)
+        if (transform.position.x > camWidth)
+            Destroy(gameObject);
+        if (transform.position.x < -camWidth)
             Destroy(gameObject);
     }
 

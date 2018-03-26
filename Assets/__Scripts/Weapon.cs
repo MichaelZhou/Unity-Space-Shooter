@@ -20,8 +20,7 @@ public class WeaponDefinition
 public class Weapon : MonoBehaviour {
     static public Transform PROJECTILE_ANCHOR;
 
-    [Header("Set Dynamically")][SerializeField]
-
+    [Header("Set Dynamically")] [SerializeField]
     private WeaponType _type = WeaponType.none;
     public WeaponDefinition def;
     public GameObject collar;
