@@ -12,21 +12,32 @@ public class BoundsCheck : MonoBehaviour {
     public float camWidth;
     public float camHeight;
 
-    void Awake () {
+    void Awake() {
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;
     }
-	
-	void LateUpdate () {
+
+    void LateUpdate() {
         Vector3 pos = transform.position;
-        if (pos.x > camWidth - radius)
-            pos.x = camWidth - radius;
-        if (pos.x < -camWidth + radius)
-            pos.x = -camWidth + radius;
-        if (pos.y > camHeight - radius)
-            pos.y = camHeight - radius;
-        if (pos.y < -camHeight + radius)
-            pos.y = -camHeight + radius;
-        transform.position = pos;
+        if (gameObject.tag == "Hero") {
+            if (pos.x > camWidth - radius)
+                pos.x = camWidth - radius;
+            if (pos.x < -camWidth + radius)
+                pos.x = -camWidth + radius;
+            if (pos.y > camHeight - radius)
+                pos.y = camHeight - radius;
+            if (pos.y < -camHeight + radius)
+                pos.y = -camHeight + radius;
+            transform.position = pos;
+        }
+        else if (gameObject.tag == "Enemy") {
+            if ((pos.x > camWidth - radius) || (pos.x < -camWidth + radius) || (pos.y < -camHeight + radius))
+                Destroy(gameObject);
+        }
+        else {
+            if ((pos.x > camWidth - radius) || (pos.x < -camWidth + radius) || (pos.y < -camHeight + radius) || (pos.y > camHeight - radius))
+                Destroy(gameObject);
+        }
+
 	}
 }

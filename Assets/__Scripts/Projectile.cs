@@ -27,24 +27,9 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-    void Awake()
-    {
+    void Awake() {
         rend = GetComponent<Renderer>();
         rigid = GetComponent<Rigidbody>();
-        camHeight = Camera.main.orthographicSize;
-        camWidth = camHeight * Camera.main.aspect;
-    }
-
-    // Update is called once per frame
-    void Update () {
-        if (transform.position.y > camHeight)
-            Destroy(gameObject);
-        if (transform.position.y < -camHeight)
-            Destroy(gameObject);
-        if (transform.position.x > camWidth)
-            Destroy(gameObject);
-        if (transform.position.x < -camWidth)
-            Destroy(gameObject);
     }
 
     public void SetType(WeaponType eType)

@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   fireRate: 0.3
-  health: 10
+  health: 4
   scoreValue: 10
   camWidth: 0
   camHeight: 0

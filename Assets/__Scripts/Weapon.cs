@@ -16,7 +16,6 @@ public class WeaponDefinition
     public float velocity = 20f;
 }
 
-
 public class Weapon : MonoBehaviour {
     static public Transform PROJECTILE_ANCHOR;
 
@@ -91,22 +90,20 @@ public class Weapon : MonoBehaviour {
             vel.y = -vel.y;
         }
 
-
-        switch ( type)
+        switch (type)
         {
             case WeaponType.simple:
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
-
             case WeaponType.blaster:
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 p = MakeProjectile();
-                p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
+                p.transform.rotation = Quaternion.AngleAxis(30, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
                 p = MakeProjectile();
-                p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
+                p.transform.rotation = Quaternion.AngleAxis(-30, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
         }
@@ -131,7 +128,6 @@ public class Weapon : MonoBehaviour {
         p.type = type;
         lastShotTime = Time.time;
         return (p);
-
     }
 
     void Update()

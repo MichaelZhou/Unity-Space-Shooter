@@ -22,17 +22,12 @@ public class Hero : MonoBehaviour {
 
     private GameObject lastTriggerGo = null;
 
-
-
     void Awake() {
         if (_hero == null)
             _hero = this; // setting singleton
-       // fireDelegate += TempFire;
     }
 
     void Update () {
-
-
         float xAxis = Input.GetAxis("Horizontal");
         float yAxis = Input.GetAxis("Vertical");
 

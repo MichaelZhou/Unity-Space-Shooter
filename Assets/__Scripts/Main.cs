@@ -19,9 +19,8 @@ public class Main : MonoBehaviour
     [Header("Set in Inspector")]
     public GameObject enemy_0;
     public GameObject enemy_1;
-    public float spawnTime = 2f;
+    public float spawnTime = 1f;
     public WeaponDefinition[] weaponDefinitions;
-
 
     [Header("Set Dynamically")]
     private int numEnemies;

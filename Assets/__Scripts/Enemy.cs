@@ -45,13 +45,6 @@ public class Enemy : MonoBehaviour {
 
     void Update() {
         Move();
-        // destroy objects if they exit bounds
-        if (transform.position.y < -camHeight)
-            Destroy(gameObject);
-        if (transform.position.x > camWidth)
-            Destroy(gameObject);
-        if (transform.position.x < -camWidth)
-            Destroy(gameObject);
     }
  
 

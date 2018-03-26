@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23909991823743710}
   - component: {fileID: 54840365424223458}
   - component: {fileID: 114104113107880604}
+  - component: {fileID: 114053882684202696}
   m_Layer: 0
   m_Name: ProjectileHero
   m_TagString: ProjectileHero
@@ -53,6 +54,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -68,6 +70,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -110,6 +113,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114053882684202696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658921118422616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b9af7fd99e8304a8d68760a660ef2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  camWidth: 0
+  camHeight: 0
 --- !u!114 &114104113107880604
 MonoBehaviour:
   m_ObjectHideFlags: 1

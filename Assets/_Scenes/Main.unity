@@ -714,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_0: {fileID: 1660180378015122, guid: 0de7ab38a16db9f4f88c4909f4066a10, type: 2}
   enemy_1: {fileID: 1295849882377974, guid: 55b5161e1776ee9419d671f8066d1881, type: 2}
-  spawnTime: 3
+  spawnTime: 1
   weaponDefinitions:
   - type: 1
     letter: S
