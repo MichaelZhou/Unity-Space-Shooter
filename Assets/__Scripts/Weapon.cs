@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable]
 public class WeaponDefinition
 {
@@ -14,7 +13,7 @@ public class WeaponDefinition
     public float damageOnHit = 0;
     public float continuousDamage = 0;
     public float delayBetweenShots =0;
-    public float velocity = 40;
+    public float velocity = 20;
 }
 
 

@@ -123,3 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camWidth: 0
   camHeight: 0
+  rigid: {fileID: 0}
+  _type: 1

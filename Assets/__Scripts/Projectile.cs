@@ -7,10 +7,11 @@ public class Projectile : MonoBehaviour {
     private Renderer rend;
 
     [Header("Set Dynamically")]
-
     public float camWidth;
     public float camHeight;
+
     public Rigidbody rigid;
+
     [SerializeField]
     private WeaponType _type;
 

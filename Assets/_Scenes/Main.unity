@@ -442,7 +442,27 @@ MonoBehaviour:
   enemy_0: {fileID: 1660180378015122, guid: 0de7ab38a16db9f4f88c4909f4066a10, type: 2}
   enemy_1: {fileID: 1295849882377974, guid: 55b5161e1776ee9419d671f8066d1881, type: 2}
   spawnTime: 1
-  weaponDefinitions: []
+  weaponDefinitions:
+  - type: 1
+    letter: S
+    color: {r: 1, g: 1, b: 1, a: 0}
+    projectilePrefab: {fileID: 1658921118422616, guid: 6bdca46ae0439c44ba5fc5e3e47447e6,
+      type: 2}
+    projectileColor: {r: 1, g: 1, b: 1, a: 0}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.2
+    velocity: 50
+  - type: 2
+    letter: B
+    color: {r: 1, g: 1, b: 1, a: 0}
+    projectilePrefab: {fileID: 1658921118422616, guid: 6bdca46ae0439c44ba5fc5e3e47447e6,
+      type: 2}
+    projectileColor: {r: 1, g: 1, b: 1, a: 0}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.4
+    velocity: 50
   camWidth: 0
   camHeight: 0
 --- !u!1 &1137593896
