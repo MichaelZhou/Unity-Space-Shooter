@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     static public Hero _hero; // singleton
+    public delegate void WeaponFireDelegate();
+    public WeaponFireDelegate fireDelegate;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 40;
+
 
     [Header("Set in Inspector")]
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
+    public float gameRestartDelay = 2f;
 
     [Header("Set Dynamically")]
-    public float shieldLevel = 1;
+    [SerializeField]
+    private float _shieldLevel = 1;
+
+    private GameObject lastTriggerGo = null;
+
+
 
     void Awake() {
         if (_hero == null)
             _hero = this; // setting singleton
-        else
-            Debug.LogError("Hero.Awake() - Attempted to re-assign singleton _hero");
+       // fireDelegate += TempFire;
     }
-	
-	void Update () {
+
+    void Update () {
+
+
         float xAxis = Input.GetAxis("Horizontal");
         float yAxis = Input.GetAxis("Vertical");
 
@@ -31,5 +43,41 @@ public class Hero : MonoBehaviour {
 
         transform.position = pos;
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
+
+        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
+        {
+            fireDelegate();
+        }
 	}
+
+    void OnTriggerEnter(Collider other) {
+        Transform rootT = other.gameObject.transform.root;
+        GameObject go = rootT.gameObject;
+        if (go == lastTriggerGo)
+            return;
+        lastTriggerGo = go;
+        if(go.tag == "Enemy") {
+            shieldLevel--;
+            Destroy(go);
+        } else 
+            print("Triggered by non-enemy: " + go.name);  
+    }
+
+    public float shieldLevel {
+        get {
+            return (_shieldLevel);
+        }
+        set {
+            _shieldLevel = Mathf.Min(value, 4);
+            if (value < 0) {
+                Destroy(this.gameObject);
+                Main.S.DelayedRestart(gameRestartDelay);
+            }
+        }
+    }
+
+    
+
+    
+
 }

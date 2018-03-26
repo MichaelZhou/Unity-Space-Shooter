@@ -19,5 +19,15 @@ public class Enemy_1 : Enemy {
 
     void Start() {
         leftOrRight = Random.Range(0, 2);
+        GameObject mainObject = GameObject.FindWithTag("MainCamera");
+        if (mainObject != null)
+        {
+            main = mainObject.GetComponent<Main>();
+        }
+        if (mainObject == null)
+        {
+            Debug.Log("Cannot find 'MainCamera' script");
+        }
     }
+ 
 }
