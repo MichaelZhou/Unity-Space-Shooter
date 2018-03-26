@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
     static public Hero _hero; // singleton
+    public delegate void WeaponFireDelegate();
+    public WeaponFireDelegate fireDelegate;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 40;
+
 
     [Header("Set in Inspector")]
     public float speed = 30;
@@ -17,12 +22,17 @@ public class Hero : MonoBehaviour {
 
     private GameObject lastTriggerGo = null;
 
+
+
     void Awake() {
         if (_hero == null)
             _hero = this; // setting singleton
+       // fireDelegate += TempFire;
     }
-	
-	void Update () {
+
+    void Update () {
+
+
         float xAxis = Input.GetAxis("Horizontal");
         float yAxis = Input.GetAxis("Vertical");
 
@@ -33,6 +43,11 @@ public class Hero : MonoBehaviour {
 
         transform.position = pos;
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
+
+        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
+        {
+            fireDelegate();
+        }
 	}
 
     void OnTriggerEnter(Collider other) {
@@ -60,4 +75,9 @@ public class Hero : MonoBehaviour {
             }
         }
     }
+
+    
+
+    
+
 }

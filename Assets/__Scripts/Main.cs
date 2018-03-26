@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum WeaponType
+{
+    none,
+    simple,
+    blaster
+}
+
 public class Main : MonoBehaviour
 {
     static public Main S;
-
+    static Dictionary<WeaponType, WeaponDefinition> WEAP_DICT;
+   
     [Header("Set in Inspector")]
     public GameObject enemy_0;
     public GameObject enemy_1;
     public float spawnTime = 1f;
+    public WeaponDefinition[] weaponDefinitions;
+
 
     [Header("Set Dynamically")]
     private int numEnemies;
@@ -22,6 +32,12 @@ public class Main : MonoBehaviour
         S = this;
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;
+        WEAP_DICT = new Dictionary<WeaponType, WeaponDefinition>();
+
+        foreach (WeaponDefinition def in weaponDefinitions)
+        {
+            WEAP_DICT[def.type] = def;
+        }
     }
 
     void Start() {
@@ -50,6 +66,15 @@ public class Main : MonoBehaviour
 
     public void Restart() {
         SceneManager.LoadScene("Main");
+    }
+
+    static public WeaponDefinition GetWeaponDefinition (WeaponType wt)
+    {
+        if (WEAP_DICT.ContainsKey(wt))
+        {
+            return (WEAP_DICT[wt]);
+        }
+        return (new WeaponDefinition());
     }
 }
  
