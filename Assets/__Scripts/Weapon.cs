@@ -10,10 +10,10 @@ public class WeaponDefinition
     public Color color = Color.white;
     public GameObject projectilePrefab;
     public Color projectileColor = Color.white;
-    public float damageOnHit = 0;
-    public float continuousDamage = 0;
-    public float delayBetweenShots =0;
-    public float velocity = 20;
+    public float damageOnHit = 0f;
+    public float continuousDamage = 0f;
+    public float delayBetweenShots =0f;
+    public float velocity = 20f;
 }
 
 
@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviour {
     public GameObject collar;
     public float lastShotTime;
     private Renderer collarRend;
+    public float weaponCheck = 0f;
 
     void Start()
     {
@@ -134,4 +135,19 @@ public class Weapon : MonoBehaviour {
 
     }
 
-}
+    void Update()
+    {
+
+        if (Input.GetKeyDown("q"))
+        {
+            weaponCheck++;
+
+            if (weaponCheck % 2 == 0)
+                SetType(WeaponType.simple);
+            else
+                SetType(WeaponType.blaster);
+
+
+        }
+    }
+    }

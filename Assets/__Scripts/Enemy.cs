@@ -51,8 +51,13 @@ public class Enemy : MonoBehaviour {
         GameObject otherGo = coll.gameObject;
         if (otherGo.tag == "ProjectileHero")
         {
-            Destroy(otherGo);
-            Destroy(gameObject);
+            Projectile p = otherGo.GetComponent<Projectile>();
+            health -= Main.GetWeaponDefinition(p.type).damageOnHit;
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+            Destroy(otherGo); //destroys the projectile
         }
         else
         {
