@@ -9,10 +9,10 @@ public enum WeaponType
     none,
     simple,
     blaster,
-    doubleblaster,
     destroyer,
     shield,
-    speedUp
+    speedUp,
+    doubleblaster,
 }
 
 public class Main : MonoBehaviour
@@ -74,7 +74,7 @@ public class Main : MonoBehaviour
         nextLevelText.enabled = false;
         errorText.enabled = false;
         GenerateLevels();
-        CURRENT_LEVEL = levels[3];
+        CURRENT_LEVEL = levels[1];
         UpdateLevel();
         score = 0;
         UpdateScore();
