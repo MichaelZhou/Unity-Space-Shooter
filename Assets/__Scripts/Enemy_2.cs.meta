@@ -5,7 +5,10 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - main: {instanceID: 0}
+  - projectilePrefab: {fileID: 1410374700373830, guid: 44df27221d9d6b04da7c5288a6dbaf52,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -76,10 +76,12 @@ public class Hero : MonoBehaviour {
         {
             case WeaponType.shield: // If it's the shield
                 shieldLevel++;
+                SoundManagerScript.PlaySound("shield");
                 break;
 
             case WeaponType.speedUp: // If it's the speedup
                 speed += 3;
+                SoundManagerScript.PlaySound("speed");
                 break;
         
             default:

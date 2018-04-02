@@ -68,6 +68,7 @@ public class Enemy : MonoBehaviour {
                 Main.S.ShipDestroyed(this);
                 Destroy(this.gameObject);
                 main.AddScore(scoreValue);
+                SoundManagerScript.PlaySound("0death");
             }
             Destroy(otherGo); //destroys the projectile
         }

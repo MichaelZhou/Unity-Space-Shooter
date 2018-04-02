@@ -175,6 +175,7 @@ public class Weapon : MonoBehaviour {
     public Projectile MakeProjectile()
     {
         GameObject go = Instantiate<GameObject>(def.projectilePrefab);
+        SoundManagerScript.PlaySound("fire");
         if ( transform.parent.gameObject.tag == "Hero")
         {
             go.tag = "ProjectileHero";
