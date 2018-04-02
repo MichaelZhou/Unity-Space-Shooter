@@ -13,6 +13,7 @@ public enum WeaponType
     shield,
     speedUp,
     doubleblaster,
+    doubleTap
 }
 
 public class Main : MonoBehaviour
@@ -49,6 +50,7 @@ public class Main : MonoBehaviour
     static public Level CURRENT_LEVEL;
     private int mod = 2;
     private int weaponMod = 2;
+    private float speedMult = 1f;
 
     void Awake() {
         S = this;
@@ -223,6 +225,14 @@ public class Main : MonoBehaviour
 
     public int getWeaponMod() {
         return weaponMod;
+    }
+
+    public float getSpeedMult() {
+        return speedMult;
+    }
+
+    public void setSpeedMult(float mult) {
+        speedMult = mult;
     }
 }
  

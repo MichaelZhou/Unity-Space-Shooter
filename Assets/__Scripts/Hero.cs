@@ -19,6 +19,7 @@ public class Hero : MonoBehaviour {
     [Header("Set Dynamically")]
     [SerializeField]
     private float _shieldLevel = 1;
+    private Main main;
 
     // Weapon fields
     public Weapon[] weapons;
@@ -29,6 +30,18 @@ public class Hero : MonoBehaviour {
         if (_hero == null)
             _hero = this; // setting singleton
 
+    }
+
+    void Start() {
+        GameObject mainObject = GameObject.FindWithTag("MainCamera");
+        if (mainObject != null)
+        {
+            main = mainObject.GetComponent<Main>();
+        }
+        if (mainObject == null)
+        {
+            Debug.Log("Cannot find 'MainCamera' script");
+        }
     }
 
     void Update () {
@@ -64,7 +77,7 @@ public class Hero : MonoBehaviour {
         else if (go.tag == "PowerUp") {
             // If the shield was triggerd by a PowerUp
             AbsorbPowerUp(go);
-            }
+        }
   
         else
             print("Triggered by non-enemy: " + go.name);  
@@ -78,12 +91,13 @@ public class Hero : MonoBehaviour {
                 shieldLevel++;
                 SoundManagerScript.PlaySound("shield");
                 break;
-
             case WeaponType.speedUp: // If it's the speedup
                 speed += 3;
                 SoundManagerScript.PlaySound("speed");
                 break;
-        
+            case WeaponType.doubleTap: // If it's the double tap
+                main.setSpeedMult(main.getSpeedMult() * 0.9f);
+                break;
             default:
                 break;
         }

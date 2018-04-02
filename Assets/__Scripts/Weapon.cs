@@ -93,9 +93,9 @@ public class Weapon : MonoBehaviour {
     public void Fire()
     {
         if (!gameObject.activeInHierarchy) return;
-        if (Time.time - lastShotTime < def.delayBetweenShots) {
-            if(def.letter == "D")
-                main.DisplayError("Charging... (" + (def.delayBetweenShots - Mathf.CeilToInt(Time.time - lastShotTime)) + "s)");
+        if (Time.time - lastShotTime < def.delayBetweenShots * main.getSpeedMult()) {
+            if(def.type == WeaponType.destroyer)
+                main.DisplayError("Charging... (" + Mathf.CeilToInt(def.delayBetweenShots * main.getSpeedMult() - (Time.time - lastShotTime)) + "s)");
             return;
         }
         Projectile p;
