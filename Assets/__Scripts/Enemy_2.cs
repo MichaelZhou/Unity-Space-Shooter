@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Enemy_2 : Enemy {
     public GameObject projectilePrefab;
+    public GameObject barrel;
+    private Renderer barrelRend;
     public float projectileSpeed = 20f;
     int leftOrRight;
     int angle;
     int timer = 0;
+    Vector3 offset = new Vector3 (0f, 2f, 0f);
 
     public override void Move() {
         Vector3 tempPos = pos;
@@ -19,8 +22,6 @@ public class Enemy_2 : Enemy {
         pos = tempPos;
 
     }
-
-  
 
     public void Start()
     {
@@ -34,6 +35,8 @@ public class Enemy_2 : Enemy {
         {
             Debug.Log("Cannot find 'MainCamera' script");
         }
+        barrel = transform.Find("BarrelEnemy").gameObject;
+        barrelRend = barrel.GetComponent<Renderer>();
     }
 
     public void GenerateDirection()
@@ -44,7 +47,7 @@ public class Enemy_2 : Enemy {
     void FireProjectile()
     {
         GameObject proj = Instantiate<GameObject>(projectilePrefab);
-        proj.transform.position = transform.position;
+        proj.transform.position = barrel.transform.position -  offset;
         Rigidbody rigidB = proj.GetComponent<Rigidbody>();
         rigidB.velocity = Vector3.down * projectileSpeed;
     }
@@ -53,8 +56,8 @@ public class Enemy_2 : Enemy {
     {
         base.Update();
         timer = timer + 1;
-        //shoot a projectile every 50 frames
-        if (timer % 50 == 0)
+        //shoot a projectile every 90 frames
+        if (timer % 90 == 0)
         {
             FireProjectile();
         }
