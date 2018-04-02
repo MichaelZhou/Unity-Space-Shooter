@@ -71,6 +71,10 @@ public class Enemy : MonoBehaviour {
             }
             Destroy(otherGo); //destroys the projectile
         }
+       else  if (otherGo.tag == "ProjectileEnemy")
+        {
+            Destroy(otherGo); //destroys the projectile
+        }
         else if (otherGo.tag != "ProjectileEnemy")
         {
             print("Enemy hit by non-ProjectileHero: " + otherGo.name);
