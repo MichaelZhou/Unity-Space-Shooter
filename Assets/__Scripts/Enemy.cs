@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    void Update() {
+    public virtual void Update() {
         Move();
     }
  
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour {
             }
             Destroy(otherGo); //destroys the projectile
         }
-        else
+        else if (otherGo.tag != "ProjectileEnemy")
         {
             print("Enemy hit by non-ProjectileHero: " + otherGo.name);
         }
