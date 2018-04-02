@@ -23,12 +23,22 @@ public class Weapon : MonoBehaviour {
     private WeaponType _type = WeaponType.none;
     public WeaponDefinition def;
     public GameObject collar;
-    public float lastShotTime;
+    public float lastShotTime = 0f;
     private Renderer collarRend;
     public float weaponCheck = 0f;
+    public Main main;
 
     void Start()
     {
+        GameObject mainObject = GameObject.FindWithTag("MainCamera");
+        if (mainObject != null)
+        {
+            main = mainObject.GetComponent<Main>();
+        }
+        if (mainObject == null)
+        {
+            Debug.Log("Cannot find 'MainCamera' script");
+        }
         collar = transform.Find("Collar").gameObject;
         collarRend = collar.GetComponent<Renderer>();
 
@@ -73,14 +83,14 @@ public class Weapon : MonoBehaviour {
         }
         def = Main.GetWeaponDefinition(_type);
         collarRend.material.color = def.color;
-        lastShotTime = 0;
     }
 
     public void Fire()
     {
         if (!gameObject.activeInHierarchy) return;
-        if (Time.time - lastShotTime < def.delayBetweenShots)
-        {
+        if (Time.time - lastShotTime < def.delayBetweenShots) {
+            if(def.letter == "D")
+                main.DisplayError("Charging... (" + (def.delayBetweenShots - Mathf.CeilToInt(Time.time - lastShotTime)) + "s)");
             return;
         }
         Projectile p;
@@ -106,7 +116,55 @@ public class Weapon : MonoBehaviour {
                 p.transform.rotation = Quaternion.AngleAxis(-30, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
+            case WeaponType.destroyer:
+                p = MakeProjectile();
+                p.rigid.velocity = vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(30, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-30, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(60, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-60, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(90, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-90, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(120, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-120, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(150, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-150, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(180, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-180, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                Invoke("DestroyAllEnemies", 0.8f);
+                break;
         }
+    }
+
+    public void DestroyAllEnemies() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+            Destroy(enemies[i]);
+        main.AddScore(enemies.Length*5); // add 5 score per enemy killed
     }
 
     public Projectile MakeProjectile()
@@ -132,17 +190,15 @@ public class Weapon : MonoBehaviour {
 
     void Update()
     {
-
         if (Input.GetKeyDown("q"))
         {
             weaponCheck++;
-
-            if (weaponCheck % 2 == 0)
+            if (weaponCheck % 3 == 0)
                 SetType(WeaponType.simple);
-            else
+            else if (weaponCheck % 3 == 1)
                 SetType(WeaponType.blaster);
-
-
+            else
+                SetType(WeaponType.destroyer);
         }
     }
     }
