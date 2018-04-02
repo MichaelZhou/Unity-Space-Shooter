@@ -504,6 +504,7 @@ MonoBehaviour:
   fireRate: 0.3
   health: 10
   scoreValue: 15
+  powerUpDropChance: 0.1
   camWidth: 0
   camHeight: 0
   main: {fileID: 0}

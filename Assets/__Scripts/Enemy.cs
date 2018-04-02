@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
     public float fireRate = 0.3f;
     public float health = 10f;
     public int scoreValue;
+    public float powerUpDropChance = 0.1f; // Chance to drop a power-up
 
     [Header("Set Dynamically")]
     public float camWidth;
@@ -63,6 +64,8 @@ public class Enemy : MonoBehaviour {
             health -= Main.GetWeaponDefinition(p.type).damageOnHit;
             if (health <= 0)
             {
+                // Tell the Main singleton that this ship has been destroyed
+                Main.S.ShipDestroyed(this);
                 Destroy(this.gameObject);
                 main.AddScore(scoreValue);
             }

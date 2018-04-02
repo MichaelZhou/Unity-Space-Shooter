@@ -9,7 +9,9 @@ public enum WeaponType
     none,
     simple,
     blaster,
-    destroyer
+    destroyer,
+    shield,
+    speedUp,
 }
 
 public class Main : MonoBehaviour
@@ -21,9 +23,13 @@ public class Main : MonoBehaviour
     public GameObject enemy_0;
     public GameObject enemy_1;
     public GameObject enemy_2;
+    public GameObject prefabPowerUp;
+    public WeaponType[] powerUpFrequency = new WeaponType[] {
+    WeaponType.shield, WeaponType.speedUp };
     public const int NUM_LEVELS = 100;
     public WeaponDefinition[] weaponDefinitions;
 
+ 
     [Header("Set Dynamically")]
     private int numEnemies;
     private Vector3 spawnPoint;
@@ -141,6 +147,28 @@ public class Main : MonoBehaviour
                 break;
         }
         enemy.name = "Enemy " + numEnemies;
+    }
+
+    public void ShipDestroyed(Enemy e)
+    {
+        // Potentially generate a PowerUp
+        if (Random.value <= e.powerUpDropChance)
+        {
+            // Random.value generates a value between 0 & 1 (though never == 1)
+            // If the e.powerUpDropChance is 0.50f, a PowerUp will be generated
+            // 50% of the time. For testing, it's now set to 1f.
+            // Choose which PowerUp to pick
+            // Pick one from the possibilities in powerUpFrequency
+            int ndx = Random.Range(0, powerUpFrequency.Length);
+            WeaponType puType = powerUpFrequency[ndx];
+            // Spawn a PowerUp
+            GameObject go = Instantiate(prefabPowerUp) as GameObject;
+            PowerUp pu = go.GetComponent<PowerUp>();
+            // Set it to the proper WeaponType
+            pu.SetType(puType);
+            // Set it to the position of the destroyed ship
+            pu.transform.position = e.transform.position;
+        }
     }
 
     public void DelayedRestart(float delay) {

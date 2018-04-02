@@ -497,6 +497,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1658921118422616, guid: 6bdca46ae0439c44ba5fc5e3e47447e6,
         type: 2}
+    - target: {fileID: 1067464301271566, guid: 19aa56728bec87e4985dcfd45b7d705d, type: 2}
+      propertyPath: m_Name
+      value: Weapon_0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19aa56728bec87e4985dcfd45b7d705d, type: 2}
   m_IsPrefabParent: 0
@@ -937,6 +941,9 @@ MonoBehaviour:
   enemy_0: {fileID: 1660180378015122, guid: 0de7ab38a16db9f4f88c4909f4066a10, type: 2}
   enemy_1: {fileID: 1295849882377974, guid: 55b5161e1776ee9419d671f8066d1881, type: 2}
   enemy_2: {fileID: 1971895695922242, guid: 8c54dcc1babd74e4098d6a7076e1ebf3, type: 2}
+  prefabPowerUp: {fileID: 1565122069471268, guid: fd695550d3ddf484b87244933d0dfd16,
+    type: 2}
+  powerUpFrequency: 0400000005000000
   weaponDefinitions:
   - type: 1
     letter: S
@@ -1037,6 +1044,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &804452034 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114006384656176386, guid: 19aa56728bec87e4985dcfd45b7d705d,
+    type: 2}
+  m_PrefabInternal: {fileID: 335917881}
+  m_Script: {fileID: 11500000, guid: bc976b0a6f4f62d439d08b0945eb07e3, type: 3}
 --- !u!1 &1034747970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1238,12 @@ MonoBehaviour:
   pitchMult: 30
   gameRestartDelay: 2
   _shieldLevel: 2
+  weapons:
+  - {fileID: 804452034}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1622541813
 GameObject:
   m_ObjectHideFlags: 0

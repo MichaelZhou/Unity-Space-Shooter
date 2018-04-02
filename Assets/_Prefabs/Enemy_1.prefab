@@ -303,6 +303,7 @@ MonoBehaviour:
   fireRate: 0.3
   health: 2
   scoreValue: 5
+  powerUpDropChance: 0.1
   camWidth: 0
   camHeight: 0
   main: {fileID: 0}

@@ -28,6 +28,11 @@ public class Weapon : MonoBehaviour {
     public float weaponCheck = 0f;
     public Main main;
 
+    void Awake()
+    {
+        collar = transform.Find("Collar").gameObject;
+    }
+
     void Start()
     {
         GameObject mainObject = GameObject.FindWithTag("MainCamera");
@@ -39,7 +44,7 @@ public class Weapon : MonoBehaviour {
         {
             Debug.Log("Cannot find 'MainCamera' script");
         }
-        collar = transform.Find("Collar").gameObject;
+    
         collarRend = collar.GetComponent<Renderer>();
 
         SetType(_type);

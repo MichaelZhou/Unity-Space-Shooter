@@ -20,11 +20,15 @@ public class Hero : MonoBehaviour {
     [SerializeField]
     private float _shieldLevel = 1;
 
+    // Weapon fields
+    public Weapon[] weapons;
+
     private GameObject lastTriggerGo = null;
 
     void Awake() {
         if (_hero == null)
             _hero = this; // setting singleton
+
     }
 
     void Update () {
@@ -54,8 +58,31 @@ public class Hero : MonoBehaviour {
         if(go.tag == "Enemy") {
             shieldLevel--;
             Destroy(go);
-        } else 
+        }
+        else if (go.tag == "PowerUp") {
+            // If the shield was triggerd by a PowerUp
+            AbsorbPowerUp(go);
+            }
+        else 
             print("Triggered by non-enemy: " + go.name);  
+    }
+    public void AbsorbPowerUp(GameObject go)
+    {
+        PowerUp pu = go.GetComponent<PowerUp>();
+        switch (pu.type)
+        {
+            case WeaponType.shield: // If it's the shield
+                shieldLevel++;
+                break;
+
+            case WeaponType.speedUp: // If it's the speedup
+                speed += 3;
+                break;
+        
+            default:
+                break;
+        }
+        pu.AbsorbedBy(this.gameObject);
     }
 
     public float shieldLevel {
@@ -71,8 +98,8 @@ public class Hero : MonoBehaviour {
         }
     }
 
-    
 
-    
+
+
 
 }
