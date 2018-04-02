@@ -97,6 +97,7 @@ public class Hero : MonoBehaviour {
                 break;
             case WeaponType.doubleTap: // If it's the double tap
                 main.setSpeedMult(main.getSpeedMult() * 0.9f);
+                SoundManagerScript.PlaySound("doubleTap");
                 break;
             default:
                 break;
