@@ -89,7 +89,8 @@ public class Main : MonoBehaviour
                 nextLevelText.enabled = true;
                 DelayedRestart(5f);
             }
-            CURRENT_LEVEL = levels[CURRENT_LEVEL.getLevelNum()+1];
+            CURRENT_LEVEL = levels[CURRENT_LEVEL.getLevelNum() + 1];
+            SoundManagerScript.PlaySound("levelUp");
             UpdateLevel();
         }
     }
@@ -117,6 +118,7 @@ public class Main : MonoBehaviour
         nextLevelText.text = "Level " + CURRENT_LEVEL.getLevelNum();
         nextLevelText.enabled = true;
         CancelInvoke();
+
         // start spawning 3rd enemy type once past level 2
         if (CURRENT_LEVEL.getLevelNum() == 2)
         {

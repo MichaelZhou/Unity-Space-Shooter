@@ -6,7 +6,8 @@ public class SoundManagerScript : MonoBehaviour {
 
     // Use this for initialization
 
-    public static AudioClip playerBulletSound, enemy_0DeathSound, enemy_1DeathSound, enemy_2DeathSound, powerUpSpeedSound, powerUpShieldSound;
+    public static AudioClip playerBulletSound, enemy_0DeathSound, enemy_1DeathSound, enemy_2DeathSound, powerUpSpeedSound, powerUpShieldSound,
+        enemyBulletSound, levelUpSound;
     static AudioSource audioSrc;
 
 	void Start () {
@@ -16,6 +17,8 @@ public class SoundManagerScript : MonoBehaviour {
         enemy_2DeathSound = Resources.Load<AudioClip>("Explosion+5");
         powerUpSpeedSound = Resources.Load<AudioClip>("powerUpSpeed");
         powerUpShieldSound = Resources.Load<AudioClip>("powerUpShield");
+        enemyBulletSound = Resources.Load<AudioClip>("laser7");
+        levelUpSound = Resources.Load<AudioClip>("piano");
 
         audioSrc = GetComponent<AudioSource> ();
         
@@ -48,6 +51,12 @@ public class SoundManagerScript : MonoBehaviour {
                 break;
             case "shield":
                 audioSrc.PlayOneShot(powerUpShieldSound);
+                break;
+            case "enemyFire":
+                audioSrc.PlayOneShot(enemyBulletSound);
+                break;
+            case "levelUp":
+                audioSrc.PlayOneShot(levelUpSound);
                 break;
 
         }

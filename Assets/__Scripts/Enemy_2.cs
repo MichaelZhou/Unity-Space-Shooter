@@ -47,6 +47,7 @@ public class Enemy_2 : Enemy {
     void FireProjectile()
     {
         GameObject proj = Instantiate<GameObject>(projectilePrefab);
+        SoundManagerScript.PlaySound("enemyFire");
         proj.transform.position = barrel.transform.position -  offset;
         Rigidbody rigidB = proj.GetComponent<Rigidbody>();
         rigidB.velocity = Vector3.down * projectileSpeed;
