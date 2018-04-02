@@ -49,21 +49,24 @@ public class Hero : MonoBehaviour {
         }
 	}
 
+    //when the hero bumps into an enemy 
     void OnTriggerEnter(Collider other) {
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
         if (go == lastTriggerGo)
             return;
         lastTriggerGo = go;
-        if(go.tag == "Enemy") {
+        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy") {
             shieldLevel--;
             Destroy(go);
         }
+
         else if (go.tag == "PowerUp") {
             // If the shield was triggerd by a PowerUp
             AbsorbPowerUp(go);
             }
-        else 
+  
+        else
             print("Triggered by non-enemy: " + go.name);  
     }
     public void AbsorbPowerUp(GameObject go)
@@ -84,6 +87,7 @@ public class Hero : MonoBehaviour {
         }
         pu.AbsorbedBy(this.gameObject);
     }
+
 
     public float shieldLevel {
         get {
