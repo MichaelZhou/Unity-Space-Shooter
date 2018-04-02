@@ -45,18 +45,21 @@ public class Hero : MonoBehaviour {
         }
 	}
 
+    //when the hero bumps into an enemy 
     void OnTriggerEnter(Collider other) {
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
         if (go == lastTriggerGo)
             return;
         lastTriggerGo = go;
-        if(go.tag == "Enemy") {
+        if (go.tag == "Enemy" || go.tag == "ProjectileEnemy") {
             shieldLevel--;
             Destroy(go);
-        } else 
+        }
+        else
             print("Triggered by non-enemy: " + go.name);  
     }
+
 
     public float shieldLevel {
         get {
