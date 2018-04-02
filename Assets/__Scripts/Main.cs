@@ -66,7 +66,7 @@ public class Main : MonoBehaviour
         nextLevelText.enabled = false;
         errorText.enabled = false;
         GenerateLevels();
-        CURRENT_LEVEL = levels[1];
+        CURRENT_LEVEL = levels[3];
         UpdateLevel();
         score = 0;
         UpdateScore();
