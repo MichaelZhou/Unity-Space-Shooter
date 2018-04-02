@@ -966,7 +966,17 @@ MonoBehaviour:
     continuousDamage: 0
     delayBetweenShots: 0.4
     velocity: 50
-  - type: 4
+  - type: 6
+    letter: DB
+    color: {r: 1, g: 1, b: 1, a: 1}
+    projectilePrefab: {fileID: 1658921118422616, guid: 6bdca46ae0439c44ba5fc5e3e47447e6,
+      type: 2}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.6
+    velocity: 50
+  - type: 3
     letter: D
     color: {r: 1, g: 0, b: 0, a: 1}
     projectilePrefab: {fileID: 1131762009506034, guid: bb127905b8c635d45a5969a35557c75b,
@@ -976,16 +986,24 @@ MonoBehaviour:
     continuousDamage: 0
     delayBetweenShots: 10
     velocity: 25
-  - type: 3
-    letter: DB
-    color: {r: 1, g: 1, b: 1, a: 1}
-    projectilePrefab: {fileID: 1658921118422616, guid: 6bdca46ae0439c44ba5fc5e3e47447e6,
-      type: 2}
+  - type: 4
+    letter: S
+    color: {r: 0, g: 0.9338235, b: 0.12236298, a: 1}
+    projectilePrefab: {fileID: 0}
     projectileColor: {r: 1, g: 1, b: 1, a: 1}
-    damageOnHit: 1
+    damageOnHit: 0
     continuousDamage: 0
-    delayBetweenShots: 0.8
-    velocity: 50
+    delayBetweenShots: 10
+    velocity: 25
+  - type: 5
+    letter: M
+    color: {r: 0, g: 0.37931037, b: 1, a: 1}
+    projectilePrefab: {fileID: 0}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 0
+    continuousDamage: 0
+    delayBetweenShots: 10
+    velocity: 25
   camWidth: 0
   camHeight: 0
   scoreText: {fileID: 1034747972}
