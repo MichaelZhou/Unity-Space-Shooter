@@ -508,7 +508,8 @@ MonoBehaviour:
   camWidth: 0
   camHeight: 0
   main: {fileID: 0}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1410374700373830, guid: 44df27221d9d6b04da7c5288a6dbaf52,
+    type: 2}
   projectileSpeed: 20
 --- !u!136 &136269094210342040
 CapsuleCollider:

@@ -9,9 +9,10 @@ public enum WeaponType
     none,
     simple,
     blaster,
+    doubleblaster,
     destroyer,
     shield,
-    speedUp,
+    speedUp
 }
 
 public class Main : MonoBehaviour
@@ -47,6 +48,7 @@ public class Main : MonoBehaviour
     static public int HIGH_SCORE = 0;
     static public Level CURRENT_LEVEL;
     private int mod = 2;
+    private int weaponMod = 2;
 
     void Awake() {
         S = this;
@@ -72,7 +74,7 @@ public class Main : MonoBehaviour
         nextLevelText.enabled = false;
         errorText.enabled = false;
         GenerateLevels();
-        CURRENT_LEVEL = levels[1];
+        CURRENT_LEVEL = levels[3];
         UpdateLevel();
         score = 0;
         UpdateScore();
@@ -115,11 +117,22 @@ public class Main : MonoBehaviour
         nextLevelText.text = "Level " + CURRENT_LEVEL.getLevelNum();
         nextLevelText.enabled = true;
         CancelInvoke();
-        // start spawning 3rd enemy type once past level 3
-        if (CURRENT_LEVEL.getLevelNum() == 3)
+        // start spawning 3rd enemy type once past level 2
+        if (CURRENT_LEVEL.getLevelNum() == 2)
         {
             mod = 3;
             DisplayError("New enemy unlocked!");
+        }
+        // new weapon (double blaster) unlocked once past level 3
+        else if (CURRENT_LEVEL.getLevelNum() == 3)
+        {
+            weaponMod = 3;
+            DisplayError("New weapon unlocked: Double Blaster");
+        }
+        else if (CURRENT_LEVEL.getLevelNum() == 4)
+        {
+            weaponMod = 4;
+            DisplayError("New weapon unlocked: Destroyer");
         }
         InvokeRepeating("Spawn", 0, spawnTime);
         Invoke("DisableNextLevelText", 2f);
@@ -204,6 +217,10 @@ public class Main : MonoBehaviour
             PlayerPrefs.SetInt("ShooterHighScore", HIGH_SCORE);
             highScoreText.text = "High Score: " + HIGH_SCORE;
         }
+    }
+
+    public int getWeaponMod() {
+        return weaponMod;
     }
 }
  

@@ -162,6 +162,26 @@ public class Weapon : MonoBehaviour {
                 p.rigid.velocity = p.transform.rotation * vel;
                 Invoke("DestroyAllEnemies", 0.8f);
                 break;
+            case WeaponType.doubleblaster:
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(1, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-1, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(25, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(23, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-25, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-23, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                break;
         }
     }
 
@@ -198,10 +218,12 @@ public class Weapon : MonoBehaviour {
         if (Input.GetKeyDown("q"))
         {
             weaponCheck++;
-            if (weaponCheck % 3 == 0)
+            if (weaponCheck % main.getWeaponMod() == 0)
                 SetType(WeaponType.simple);
-            else if (weaponCheck % 3 == 1)
+            else if (weaponCheck % main.getWeaponMod() == 1)
                 SetType(WeaponType.blaster);
+            else if (weaponCheck % main.getWeaponMod() == 2)
+                SetType(WeaponType.doubleblaster);
             else
                 SetType(WeaponType.destroyer);
         }
