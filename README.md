@@ -13,3 +13,5 @@ Unity Space Shooter
 |St-Germain, Gabriel|
 |Wu, Gary|gwu65@uwo.ca|
 |Zhou, Michael|mzhou268@uwo.ca|
+
+Please read the documentation PDF for a detailed overview of the project.
